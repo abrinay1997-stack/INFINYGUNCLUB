@@ -1,0 +1,71 @@
+---
+import Layout from '../layouts/Layout.astro';
+import NavBar from '../components/NavBar.astro';
+import Footer from '../components/Footer.astro';
+import StickyCTA from '../components/StickyCTA.astro';
+import BookingForm from '../components/BookingForm.jsx';
+import TrustSignals from '../components/TrustSignals.astro';
+import FAQ from '../components/FAQ.astro';
+
+const faqGob = [
+  { q: '¿Qué certificaciones ofrece el polígono?', a: 'Emitimos certificados de competencia táctica avalados por instructores certificados. Consultenos sobre acreditaciones específicas de su institución.' },
+  { q: '¿Se puede facturar a nombre de una institución del gobierno?', a: 'Sí. Trabajamos con órdenes de compra y facturación institucional. Contáctenos para iniciar el proceso.' },
+  { q: '¿Tienen programas anuales de entrenamiento?', a: 'Sí. Ofrecemos contratos anuales para mantenimiento de habilidades tácticas con descuentos especiales por volumen.' },
+  { q: '¿El polígono cumple con estándares de seguridad oficiales?', a: 'Sí. Nuestras instalaciones cumplen con todas las regulaciones panameñas aplicables al uso y manejo de armas de fuego.' },
+];
+---
+
+<Layout
+  title="Training Táctico Certificado para Instituciones — Infinity Gun Club"
+  description="Programas de entrenamiento táctico para SENAFRON, Policía Nacional, SPI y empresas de seguridad en Panamá."
+  lang="es"
+  hreflangEs="https://infinitygunclub.netlify.app/gobierno"
+  hreflangEn="https://infinitygunclub.netlify.app/en/government"
+>
+  <NavBar lang="es" />
+  <StickyCTA lang="es" href="/contacto?tipo=gobierno" />
+
+  <section class="min-h-[60vh] flex items-end bg-black relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent z-10"></div>
+    <div class="absolute inset-0 bg-cover bg-center opacity-40" style="background-image: url('/images/gobierno-bg.jpg')"></div>
+    <div class="relative z-20 max-w-7xl mx-auto px-4 pb-16">
+      <p class="section-tag mb-4">🔒 GOBIERNO & SEGURIDAD</p>
+      <h1 class="font-display text-5xl md:text-7xl text-primary mb-4">TRAINING TÁCTICO<br>CERTIFICADO</h1>
+      <p class="text-muted text-lg mb-8 max-w-xl">Programas para SENAFRON, Policía Nacional, SPI, y seguridad privada.</p>
+      <a href="/contacto?tipo=gobierno" class="btn-primary">SOLICITA PROPUESTA</a>
+    </div>
+  </section>
+
+  <section class="py-20 bg-bg">
+    <div class="max-w-7xl mx-auto px-4">
+      <p class="section-tag mb-10">PROGRAMAS DISPONIBLES</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-1">
+        {[
+          { name: 'BÁSICO', sub: 'Mantenimiento de habilidades', bullets: ['Recalificación anual', 'Pistola y fusil', 'Certificado incluido', 'Facturación institucional'] },
+          { name: 'TÁCTICO', sub: 'Entrenamiento avanzado', bullets: ['Escenarios tácticos', 'Tiro en movimiento', 'CQB básico', 'Evaluación de desempeño'] },
+          { name: 'PROGRAMA ANUAL', sub: 'Contrato institucional', bullets: ['Sesiones mensuales', 'Seguimiento individual', 'Informes de progreso', 'Precio preferencial'] },
+        ].map((pkg) => (
+          <div class="bg-surface p-8 flex flex-col">
+            <h3 class="font-display text-3xl text-primary mb-1">{pkg.name}</h3>
+            <p class="text-muted text-xs mb-4">{pkg.sub}</p>
+            <ul class="space-y-2 flex-1 mb-8">
+              {pkg.bullets.map(b => <li class="text-muted text-sm flex gap-2"><span class="text-primary">✓</span>{b}</li>)}
+            </ul>
+            <a href="/contacto?tipo=gobierno" class="btn-outline text-center text-sm">SOLICITAR INFO</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-surface">
+    <div class="max-w-7xl mx-auto px-4">
+      <p class="section-tag mb-10">CONTACTO INSTITUCIONAL</p>
+      <BookingForm lang="es" client:visible />
+    </div>
+  </section>
+
+  <FAQ items={faqGob} title="PREGUNTAS — GOBIERNO & SEGURIDAD" />
+  <TrustSignals lang="es" />
+  <Footer lang="es" />
+</Layout>

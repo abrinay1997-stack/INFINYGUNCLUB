@@ -1,0 +1,28 @@
+---
+// src/components/TrustSignals.astro
+export interface Props {
+  lang?: 'es' | 'en';
+}
+const { lang = 'es' } = Astro.props;
+const ctaLabel = lang === 'en' ? 'BOOK NOW' : 'RESERVA AHORA';
+const ctaHref = lang === 'en' ? '/en/booking' : '/reservas';
+---
+
+<section class="py-20 bg-surface border-y border-primary/20">
+  <div class="max-w-4xl mx-auto px-4 text-center">
+    <div class="flex flex-wrap justify-center gap-8 mb-12">
+      {['✅ Certificado', '🛡️ Seguro', '⭐ 4.8 Google', '🏆 +5 años'].map((item) => (
+        <div class="text-white font-bold text-sm">{item}</div>
+      ))}
+    </div>
+    <h2 class="font-display text-4xl md:text-5xl text-primary mb-4">
+      {lang === 'en' ? 'READY TO SHOOT?' : '¿LISTO PARA DISPARAR?'}
+    </h2>
+    <p class="text-muted mb-8">
+      {lang === 'en'
+        ? 'Limited spots available. Book your experience today.'
+        : 'Cupos limitados disponibles. Reserva tu experiencia hoy.'}
+    </p>
+    <a href={ctaHref} class="btn-primary text-base px-10 py-4">{ctaLabel}</a>
+  </div>
+</section>

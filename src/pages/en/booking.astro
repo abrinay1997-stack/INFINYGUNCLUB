@@ -1,0 +1,25 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import NavBar from '../../components/NavBar.astro';
+import Footer from '../../components/Footer.astro';
+import BookingForm from '../../components/BookingForm.jsx';
+---
+
+<Layout
+  title="Book Your Experience — Infinity Gun Club"
+  description="Book your shooting experience at Panama's largest shooting range."
+  lang="en"
+  hreflangEs="https://infinitygunclub.netlify.app/reservas"
+  hreflangEn="https://infinitygunclub.netlify.app/en/booking"
+>
+  <NavBar lang="en" />
+  <section class="min-h-screen py-20 bg-bg">
+    <div class="max-w-2xl mx-auto px-4">
+      <p class="section-tag mb-4">ONLINE BOOKING</p>
+      <h1 class="font-display text-5xl text-primary mb-2">BOOK YOUR<br>EXPERIENCE</h1>
+      <p class="text-muted mb-12">Fill out the form and we'll confirm your booking within 24 hours.</p>
+      <BookingForm lang="en" client:load />
+    </div>
+  </section>
+  <Footer lang="en" />
+</Layout>

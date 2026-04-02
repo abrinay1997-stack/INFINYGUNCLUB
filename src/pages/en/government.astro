@@ -1,0 +1,71 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import NavBar from '../../components/NavBar.astro';
+import Footer from '../../components/Footer.astro';
+import StickyCTA from '../../components/StickyCTA.astro';
+import BookingForm from '../../components/BookingForm.jsx';
+import TrustSignals from '../../components/TrustSignals.astro';
+import FAQ from '../../components/FAQ.astro';
+
+const faqGov = [
+  { q: 'What certifications does the range offer?', a: 'We issue tactical competency certificates validated by certified instructors. Contact us about specific accreditations for your institution.' },
+  { q: 'Can we invoice to a government institution?', a: 'Yes. We work with purchase orders and institutional billing. Contact us to start the process.' },
+  { q: 'Do you have annual training programs?', a: 'Yes. We offer annual contracts for tactical skills maintenance with special volume discounts.' },
+  { q: 'Does the range meet official safety standards?', a: 'Yes. Our facilities comply with all applicable Panamanian regulations for the use and handling of firearms.' },
+];
+---
+
+<Layout
+  title="Certified Tactical Training for Institutions — Infinity Gun Club"
+  description="Tactical training programs for SENAFRON, National Police, SPI, and private security companies in Panama."
+  lang="en"
+  hreflangEs="https://infinitygunclub.netlify.app/gobierno"
+  hreflangEn="https://infinitygunclub.netlify.app/en/government"
+>
+  <NavBar lang="en" />
+  <StickyCTA lang="en" href="/en/contact?type=government" />
+
+  <section class="min-h-[60vh] flex items-end bg-black relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent z-10"></div>
+    <div class="absolute inset-0 bg-cover bg-center opacity-40" style="background-image: url('/images/gobierno-bg.jpg')"></div>
+    <div class="relative z-20 max-w-7xl mx-auto px-4 pb-16">
+      <p class="section-tag mb-4">🔒 GOVERNMENT & SECURITY</p>
+      <h1 class="font-display text-5xl md:text-7xl text-primary mb-4">CERTIFIED<br>TACTICAL TRAINING</h1>
+      <p class="text-muted text-lg mb-8 max-w-xl">Programs for SENAFRON, National Police, SPI, and private security.</p>
+      <a href="/en/contact?type=government" class="btn-primary">REQUEST PROPOSAL</a>
+    </div>
+  </section>
+
+  <section class="py-20 bg-bg">
+    <div class="max-w-7xl mx-auto px-4">
+      <p class="section-tag mb-10">AVAILABLE PROGRAMS</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-1">
+        {[
+          { name: 'BASIC', sub: 'Skills maintenance', bullets: ['Annual recertification', 'Pistol and rifle', 'Certificate included', 'Institutional billing'] },
+          { name: 'TACTICAL', sub: 'Advanced training', bullets: ['Tactical scenarios', 'Shooting on the move', 'Basic CQB', 'Performance evaluation'] },
+          { name: 'ANNUAL PROGRAM', sub: 'Institutional contract', bullets: ['Monthly sessions', 'Individual tracking', 'Progress reports', 'Preferential pricing'] },
+        ].map((pkg) => (
+          <div class="bg-surface p-8 flex flex-col">
+            <h3 class="font-display text-3xl text-primary mb-1">{pkg.name}</h3>
+            <p class="text-muted text-xs mb-4">{pkg.sub}</p>
+            <ul class="space-y-2 flex-1 mb-8">
+              {pkg.bullets.map(b => <li class="text-muted text-sm flex gap-2"><span class="text-primary">✓</span>{b}</li>)}
+            </ul>
+            <a href="/en/contact?type=government" class="btn-outline text-center text-sm">REQUEST INFO</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-surface">
+    <div class="max-w-7xl mx-auto px-4">
+      <p class="section-tag mb-10">INSTITUTIONAL CONTACT</p>
+      <BookingForm lang="en" client:visible />
+    </div>
+  </section>
+
+  <FAQ items={faqGov} title="FAQ — GOVERNMENT & SECURITY" />
+  <TrustSignals lang="en" />
+  <Footer lang="en" />
+</Layout>

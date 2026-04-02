@@ -1,0 +1,70 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import NavBar from '../../components/NavBar.astro';
+import Footer from '../../components/Footer.astro';
+import StickyCTA from '../../components/StickyCTA.astro';
+import BookingForm from '../../components/BookingForm.jsx';
+import TrustSignals from '../../components/TrustSignals.astro';
+import FAQ from '../../components/FAQ.astro';
+
+const faqCivilians = [
+  { q: 'What weapons can I use?', a: '9mm pistols, .45 ACP, revolvers, AR-15 rifles, and shotguns depending on the selected package.' },
+  { q: 'Is an instructor included?', a: 'All packages include a certified instructor throughout the entire session.' },
+  { q: 'How long does it last?', a: 'Sessions last between 1 and 3 hours depending on the package. We recommend arriving 15 minutes early.' },
+];
+---
+
+<Layout
+  title="Civilian Shooting Experiences — Infinity Gun Club Panama"
+  description="Feel the adrenaline of shooting with total safety. Packages for beginners and advanced shooters at Panama's largest range."
+  lang="en"
+  hreflangEs="https://infinitygunclub.netlify.app/civiles"
+  hreflangEn="https://infinitygunclub.netlify.app/en/civilians"
+>
+  <NavBar lang="en" />
+  <StickyCTA lang="en" href="/en/booking?type=civilian" />
+
+  <section class="min-h-[60vh] flex items-end bg-black relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent z-10"></div>
+    <div class="absolute inset-0 bg-cover bg-center opacity-40" style="background-image: url('/images/civiles-bg.jpg')"></div>
+    <div class="relative z-20 max-w-7xl mx-auto px-4 pb-16">
+      <p class="section-tag mb-4">👤 CIVILIANS</p>
+      <h1 class="font-display text-5xl md:text-7xl text-primary mb-4">FEEL THE ADRENALINE<br>WITH ZERO RISK</h1>
+      <p class="text-muted text-lg mb-8 max-w-xl">For beginners and advanced shooters. Instructor included. Total safety.</p>
+      <a href="/en/booking?type=civilian" class="btn-primary">BOOK MY EXPERIENCE</a>
+    </div>
+  </section>
+
+  <section class="py-20 bg-bg">
+    <div class="max-w-7xl mx-auto px-4">
+      <p class="section-tag mb-10">OUR PACKAGES</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-1">
+        {[
+          { name: 'BASIC', price: '$35', bullets: ['50 rounds', '9mm pistol', 'Instructor included', 'Safety gear'] },
+          { name: 'INTERMEDIATE', price: '$65', bullets: ['100 rounds', '2 weapons of choice', 'Instructor included', 'Gear + photos'] },
+          { name: 'PRO', price: '$110', bullets: ['200 rounds', '4 weapons of choice', 'Session video', 'Shooting certificate'] },
+        ].map((pkg) => (
+          <div class="bg-surface p-8 flex flex-col">
+            <h3 class="font-display text-3xl text-primary mb-2">{pkg.name}</h3>
+            <div class="text-4xl font-black text-white mb-6">{pkg.price}</div>
+            <ul class="space-y-2 flex-1 mb-8">
+              {pkg.bullets.map(b => <li class="text-muted text-sm flex gap-2"><span class="text-primary">✓</span>{b}</li>)}
+            </ul>
+            <a href="/en/booking?type=civilian" class="btn-primary text-center text-sm">BOOK NOW</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-surface">
+    <div class="max-w-7xl mx-auto px-4">
+      <p class="section-tag mb-10">BOOK NOW</p>
+      <BookingForm lang="en" client:visible />
+    </div>
+  </section>
+
+  <FAQ items={faqCivilians} title="FAQ — CIVILIANS" />
+  <TrustSignals lang="en" />
+  <Footer lang="en" />
+</Layout>

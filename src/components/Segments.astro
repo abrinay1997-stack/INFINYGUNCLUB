@@ -1,0 +1,29 @@
+---
+// src/components/Segments.astro
+export interface Props {
+  items: { tag: string; title: string; desc: string; href: string; cta: string }[];
+  sectionTitle?: string;
+}
+const { items, sectionTitle = 'NUESTROS SERVICIOS' } = Astro.props;
+---
+
+<section id="servicios" class="py-20 bg-bg">
+  <div class="max-w-7xl mx-auto px-4">
+    <p class="section-tag mb-10">{sectionTitle}</p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-1">
+      {items.map((item) => (
+        <div class="bg-surface p-8 flex flex-col gap-4 hover:border-l-2 hover:border-primary transition-all group">
+          <span class="text-xs font-bold uppercase tracking-tactical text-primary">{item.tag}</span>
+          <h3 class="font-display text-3xl text-white tracking-wide">{item.title}</h3>
+          <p class="text-muted text-sm flex-1">{item.desc}</p>
+          <a
+            href={item.href}
+            class="text-primary text-xs font-bold uppercase tracking-tactical border-b border-primary pb-1 inline-block w-fit group-hover:pl-2 transition-all"
+          >
+            {item.cta}
+          </a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

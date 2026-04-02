@@ -1,0 +1,18 @@
+---
+import Layout from '../layouts/Layout.astro';
+import NavBar from '../components/NavBar.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="404 — Infinity Gun Club" description="Página no encontrada">
+  <NavBar />
+  <main class="min-h-screen flex items-center justify-center text-center px-4">
+    <div>
+      <p class="section-tag mb-4 justify-center inline-flex">ERROR 404</p>
+      <h1 class="font-display text-8xl text-primary mb-4">FUERA DE<br>OBJETIVO</h1>
+      <p class="text-muted mb-8">Esta página no existe. Regresa al inicio.</p>
+      <a href="/" class="btn-primary">VOLVER AL INICIO</a>
+    </div>
+  </main>
+  <Footer />
+</Layout>

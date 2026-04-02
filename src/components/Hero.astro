@@ -1,0 +1,47 @@
+---
+// src/components/Hero.astro
+import type { hero as HeroType } from '../data/es/home.ts';
+export interface Props {
+  data: typeof HeroType;
+}
+const { data } = Astro.props;
+---
+
+<section class="relative min-h-[85vh] flex items-end bg-black overflow-hidden">
+  <!-- Video de fondo (desktop) — fallback imagen en mobile/tablet -->
+  <div class="absolute inset-0">
+    <!-- Imagen de fondo (siempre) -->
+    <div
+      class="absolute inset-0 bg-cover bg-center bg-no-repeat"
+      style="background-image: url('/images/hero-bg.jpg')"
+      role="img"
+      aria-label="Infinity Gun Club - Polígono de tiro profesional"
+    ></div>
+    <!-- Video overlay (solo desktop) -->
+    <video
+      class="hidden lg:block absolute inset-0 w-full h-full object-cover"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="none"
+    >
+      <source src="/videos/hero.mp4" type="video/mp4" />
+    </video>
+    <!-- Gradiente oscuro -->
+    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+  </div>
+
+  <!-- Contenido -->
+  <div class="relative z-10 max-w-7xl mx-auto px-4 pb-16 lg:pb-24">
+    <p class="section-tag mb-4">{data.tag}</p>
+    <h1 class="font-display text-5xl md:text-7xl lg:text-8xl text-primary leading-none mb-4 whitespace-pre-line">
+      {data.headline}
+    </h1>
+    <p class="text-muted text-lg mb-8 max-w-xl">{data.subheadline}</p>
+    <div class="flex flex-wrap gap-4">
+      <a href={data.ctaPrimary.href} class="btn-primary">{data.ctaPrimary.label}</a>
+      <a href={data.ctaSecondary.href} class="btn-outline">{data.ctaSecondary.label}</a>
+    </div>
+  </div>
+</section>

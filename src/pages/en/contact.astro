@@ -1,0 +1,24 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import NavBar from '../../components/NavBar.astro';
+import Footer from '../../components/Footer.astro';
+import ContactMap from '../../components/ContactMap.astro';
+---
+
+<Layout
+  title="Contact — Infinity Gun Club Panama"
+  description="Contact us for bookings, quotes and more information."
+  lang="en"
+  hreflangEs="https://infinitygunclub.netlify.app/contacto"
+  hreflangEn="https://infinitygunclub.netlify.app/en/contact"
+>
+  <NavBar lang="en" />
+  <section class="py-20 bg-bg">
+    <div class="max-w-7xl mx-auto px-4">
+      <p class="section-tag mb-4">CONTACT</p>
+      <h1 class="font-display text-5xl text-primary mb-12">WE'RE HERE<br>TO HELP YOU</h1>
+    </div>
+  </section>
+  <ContactMap lang="en" />
+  <Footer lang="en" />
+</Layout>

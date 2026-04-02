@@ -1,0 +1,32 @@
+---
+// src/components/HowItWorks.astro
+export interface Props {
+  data: {
+    title: string;
+    steps: { num: string; label: string; desc: string }[];
+  };
+}
+const { data } = Astro.props;
+---
+
+<section class="py-20 bg-bg">
+  <div class="max-w-7xl mx-auto px-4">
+    <p class="section-tag mb-3">PROCESO</p>
+    <h2 class="section-title mb-12">{data.title}</h2>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 relative">
+      <!-- Línea conectora (desktop) -->
+      <div class="hidden md:block absolute top-8 left-[12.5%] right-[12.5%] h-px bg-primary/30"></div>
+
+      {data.steps.map((step) => (
+        <div class="flex flex-col items-center text-center relative">
+          <div class="w-16 h-16 rounded-full bg-primary text-black font-display text-3xl flex items-center justify-center mb-4 z-10">
+            {step.num}
+          </div>
+          <h3 class="font-display text-xl text-white tracking-wide mb-1">{step.label}</h3>
+          <p class="text-muted text-sm">{step.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

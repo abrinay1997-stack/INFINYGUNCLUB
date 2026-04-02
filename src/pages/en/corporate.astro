@@ -1,0 +1,72 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import NavBar from '../../components/NavBar.astro';
+import Footer from '../../components/Footer.astro';
+import StickyCTA from '../../components/StickyCTA.astro';
+import BookingForm from '../../components/BookingForm.jsx';
+import TrustSignals from '../../components/TrustSignals.astro';
+import FAQ from '../../components/FAQ.astro';
+
+const faqCorp = [
+  { q: 'What is the minimum group size for a corporate event?', a: 'We host groups from 5 people. For large groups of 50+, contact us for a custom proposal.' },
+  { q: 'Can catering be included?', a: 'Yes. We work with catering providers for half-day or full-day events. Ask us when booking.' },
+  { q: 'Do you issue tax invoices?', a: 'Yes. We issue invoices for legal entities. Please provide your company details when booking.' },
+  { q: 'How long does a team building event last?', a: 'Packages last between 2 and 4 hours. They include briefing, practice, and a group closing session.' },
+];
+---
+
+<Layout
+  title="Corporate Team Building at a Shooting Range — Infinity Gun Club Panama"
+  description="Unique corporate events and team building at Panama's largest shooting range. Groups from 5 people. Tax invoices available."
+  lang="en"
+  hreflangEs="https://infinitygunclub.netlify.app/corporativo"
+  hreflangEn="https://infinitygunclub.netlify.app/en/corporate"
+>
+  <NavBar lang="en" />
+  <StickyCTA lang="en" href="/en/booking?type=corporate" />
+
+  <section class="min-h-[60vh] flex items-end bg-black relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent z-10"></div>
+    <div class="absolute inset-0 bg-cover bg-center opacity-40" style="background-image: url('/images/corporativo-bg.jpg')"></div>
+    <div class="relative z-20 max-w-7xl mx-auto px-4 pb-16">
+      <p class="section-tag mb-4">🏢 CORPORATE</p>
+      <h1 class="font-display text-5xl md:text-7xl text-primary mb-4">TEAM BUILDING<br>THAT CONNECTS</h1>
+      <p class="text-muted text-lg mb-8 max-w-xl">Group events from 5 people. A unique experience that unites teams.</p>
+      <a href="/en/booking?type=corporate" class="btn-primary">GET A QUOTE</a>
+    </div>
+  </section>
+
+  <section class="py-20 bg-bg">
+    <div class="max-w-7xl mx-auto px-4">
+      <p class="section-tag mb-10">CORPORATE PACKAGES</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-1">
+        {[
+          { name: 'BASIC', price: '$350', sub: 'Up to 10 people', bullets: ['100 rounds per group', '2 weapons available', 'Group instructor', 'Safety gear'] },
+          { name: 'PREMIUM', price: '$750', sub: 'Up to 25 people', bullets: ['Unlimited shooting 2h', '5 weapon models', 'Instructor per team', 'Event photos'] },
+          { name: 'ENTERPRISE', price: 'Quote', sub: '50+ people', bullets: ['Full exclusive day', 'Unlimited weapons', 'Optional catering', 'Video + certificates'] },
+        ].map((pkg) => (
+          <div class="bg-surface p-8 flex flex-col">
+            <h3 class="font-display text-3xl text-primary mb-1">{pkg.name}</h3>
+            <p class="text-muted text-xs mb-4">{pkg.sub}</p>
+            <div class="text-4xl font-black text-white mb-6">{pkg.price}</div>
+            <ul class="space-y-2 flex-1 mb-8">
+              {pkg.bullets.map(b => <li class="text-muted text-sm flex gap-2"><span class="text-primary">✓</span>{b}</li>)}
+            </ul>
+            <a href="/en/booking?type=corporate" class="btn-primary text-center text-sm">BOOK NOW</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-surface">
+    <div class="max-w-7xl mx-auto px-4">
+      <p class="section-tag mb-10">GET A QUOTE</p>
+      <BookingForm lang="en" client:visible />
+    </div>
+  </section>
+
+  <FAQ items={faqCorp} title="FAQ — CORPORATE" />
+  <TrustSignals lang="en" />
+  <Footer lang="en" />
+</Layout>

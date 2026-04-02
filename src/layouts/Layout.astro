@@ -1,0 +1,88 @@
+---
+// src/layouts/Layout.astro
+export interface Props {
+  title: string;
+  description: string;
+  lang?: 'es' | 'en';
+  canonicalUrl?: string;
+  ogImage?: string;
+  hreflangEs?: string;
+  hreflangEn?: string;
+}
+
+const {
+  title,
+  description,
+  lang = 'es',
+  canonicalUrl = Astro.url.href,
+  ogImage = '/og-default.jpg',
+  hreflangEs,
+  hreflangEn,
+} = Astro.props;
+
+import '../styles/global.css';
+
+const schemaOrg = {
+  "@context": "https://schema.org",
+  "@type": ["LocalBusiness", "SportsActivityLocation"],
+  "name": "INFINITY GUN CLUB",
+  "description": "El polígono de tiro más grande de Panamá. Experiencias para civiles, empresas e instituciones.",
+  "url": "https://infinitygunclub.netlify.app",
+  "telephone": "PENDIENTE",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "PA",
+    "addressLocality": "Panama City"
+  },
+  "image": "https://infinitygunclub.netlify.app/logo.webp",
+  "priceRange": "$$",
+  "sameAs": ["https://www.instagram.com/infinitygunclub"]
+};
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#000000" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <!-- hreflang -->
+    <link rel="alternate" hreflang="es" href={hreflangEs ?? "https://infinitygunclub.netlify.app/"} />
+    <link rel="alternate" hreflang="en" href={hreflangEn ?? "https://infinitygunclub.netlify.app/en/"} />
+    <link rel="alternate" hreflang="x-default" href="https://infinitygunclub.netlify.app/" />
+
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" type="image/png" href="/Logo/LOGO.PNG" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>{title}</title>
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json" set:html={JSON.stringify(schemaOrg)} />
+
+  </head>
+  <body class="bg-bg text-body">
+    <slot />
+  </body>
+</html>

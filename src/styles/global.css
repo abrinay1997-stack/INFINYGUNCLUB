@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600;700;900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary: #FFD700;
+    --color-primary-dark: #FFC000;
+    --color-black: #000000;
+    --color-bg: #0D0D0D;
+    --color-surface: #1A1A1A;
+    --color-muted: #888888;
+    --color-body: #E8E8E8;
+  }
+
+  html { background-color: #0D0D0D; scroll-behavior: smooth; }
+  body { color: #E8E8E8; font-family: 'Inter', system-ui, sans-serif; }
+
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: #0D0D0D; }
+  ::-webkit-scrollbar-thumb { background: #FFD700; }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary text-black font-black uppercase tracking-tactical
+           px-6 py-3 text-sm transition-colors hover:bg-primary-dark
+           focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-bg;
+  }
+  .btn-outline {
+    @apply border-2 border-primary text-primary font-bold uppercase tracking-tactical
+           px-6 py-3 text-sm transition-colors hover:bg-primary hover:text-black
+           focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-bg;
+  }
+  .section-tag {
+    @apply text-primary font-bold uppercase tracking-tactical text-xs
+           border-l-2 border-primary pl-3;
+  }
+  .section-title {
+    @apply font-display text-4xl md:text-5xl text-white tracking-wide uppercase;
+  }
+}

@@ -1,0 +1,40 @@
+---
+// src/components/Gallery.astro
+export interface Props {
+  title?: string;
+  subtitle?: string;
+}
+const {
+  title = 'NUESTRAS INSTALACIONES',
+  subtitle = 'El polígono de tiro más grande de Panamá',
+} = Astro.props;
+
+const images = [
+  { src: '/images/gallery-1.jpg', alt: 'Línea de tiro interior' },
+  { src: '/images/gallery-2.jpg', alt: 'Armería y equipo' },
+  { src: '/images/gallery-3.jpg', alt: 'Instrucción profesional' },
+  { src: '/images/gallery-4.jpg', alt: 'Puestos de tiro' },
+  { src: '/images/gallery-5.jpg', alt: 'Evento corporativo' },
+  { src: '/images/gallery-6.jpg', alt: 'Vista general' },
+];
+---
+
+<section class="py-20 bg-black">
+  <div class="max-w-7xl mx-auto px-4">
+    <p class="section-tag mb-4">{title}</p>
+    <p class="text-muted mb-10">{subtitle}</p>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-2">
+      {images.map((img) => (
+        <div class="aspect-square bg-surface overflow-hidden">
+          <img
+            src={img.src}
+            alt={img.alt}
+            class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+            loading="lazy"
+            onerror="this.style.display='none'"
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

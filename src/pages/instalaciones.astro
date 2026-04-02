@@ -1,0 +1,40 @@
+---
+import Layout from '../layouts/Layout.astro';
+import NavBar from '../components/NavBar.astro';
+import Footer from '../components/Footer.astro';
+import Gallery from '../components/Gallery.astro';
+import TrustSignals from '../components/TrustSignals.astro';
+---
+
+<Layout
+  title="Instalaciones — Infinity Gun Club Panamá"
+  description="Conoce el polígono de tiro más grande de Panamá. Instalaciones de clase mundial."
+  lang="es"
+  hreflangEs="https://infinitygunclub.netlify.app/instalaciones"
+  hreflangEn="https://infinitygunclub.netlify.app/en/facilities"
+>
+  <NavBar lang="es" />
+  <section class="py-20 bg-bg">
+    <div class="max-w-7xl mx-auto px-4">
+      <p class="section-tag mb-4">NUESTRAS INSTALACIONES</p>
+      <h1 class="font-display text-5xl text-primary mb-4">EL POLÍGONO MÁS GRANDE DE PANAMÁ</h1>
+      <p class="text-muted mb-12 max-w-2xl">Instalaciones de clase mundial con los más altos estándares de seguridad.</p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
+        {[
+          { num: '20+', label: 'Puestos de tiro' },
+          { num: '15+', label: 'Modelos de armas' },
+          { num: '500+', label: 'Clientes anuales' },
+          { num: '5★', label: 'Rating Google' },
+        ].map(stat => (
+          <div class="bg-surface p-6 text-center">
+            <div class="font-display text-4xl text-primary">{stat.num}</div>
+            <div class="text-muted text-sm mt-1">{stat.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+  <Gallery title="GALERÍA" subtitle="Instalaciones, equipos y experiencias" />
+  <TrustSignals lang="es" />
+  <Footer lang="es" />
+</Layout>
