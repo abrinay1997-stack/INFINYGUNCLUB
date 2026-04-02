@@ -8,9 +8,9 @@ export const hero = {
 };
 
 export const valueProps = [
-  { icon: '🛡️', title: 'Total Safety', desc: 'Certified protocols on every session' },
-  { icon: '⚡', title: 'Real Adrenaline', desc: '+15 weapon models available' },
-  { icon: '👨‍🏫', title: 'Pro Instructors', desc: 'Certified and highly experienced' },
+  { icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`, title: 'Total Safety', desc: 'Certified protocols on every session' },
+  { icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`, title: 'Real Adrenaline', desc: '+15 weapon models available' },
+  { icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`, title: 'Pro Instructors', desc: 'Certified and highly experienced' },
 ];
 
 export const howItWorks = {

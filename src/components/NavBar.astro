@@ -20,11 +20,11 @@ const homeHref = lang === 'en' ? `${b}/en/` : `${b}/`;
 const bookHref = lang === 'en' ? `${b}/en/booking` : `${b}/reservas`;
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-md border-b border-white/5">
+<header class="fixed top-0 left-0 right-0 z-50 bg-black/60 backdrop-blur-xl border-b border-white/8" style="backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);">
   <nav class="max-w-7xl mx-auto px-6 h-[60px] flex items-center justify-between">
 
     <a href={homeHref} class="flex items-center shrink-0">
-      <img src={`${b}/Logo/LOGO.PNG`} alt="Infinity Gun Club" class="h-9 w-auto" />
+      <img src={`${b}/Logo/LOGO.PNG`} alt="Infinity Gun Club" class="h-9 w-auto" style="filter: brightness(0) invert(1);" />
     </a>
 
     <ul class="hidden md:flex items-center gap-8">
@@ -54,7 +54,7 @@ const bookHref = lang === 'en' ? `${b}/en/booking` : `${b}/reservas`;
 
 <div class="h-[60px]"></div>
 
-<nav class="md:hidden fixed bottom-0 left-0 right-0 z-[100] bg-black/95 backdrop-blur-md border-t border-white/5"
+<nav class="md:hidden fixed bottom-0 left-0 right-0 z-[100] bg-black/60 backdrop-blur-xl border-t border-white/8"
      style="padding-bottom: env(safe-area-inset-bottom)">
   <ul class="flex justify-around items-center h-14">
     {mobile.map((item) => (
@@ -63,7 +63,7 @@ const bookHref = lang === 'en' ? `${b}/en/booking` : `${b}/reservas`;
           href={b + item.href}
           class="flex flex-col items-center gap-0.5 text-zinc-600 hover:text-primary transition-colors px-3 py-1"
         >
-          <span class="text-base leading-none">{item.icon}</span>
+          <span class="w-5 h-5 block [&>svg]:w-full [&>svg]:h-full"><Fragment set:html={item.icon} /></span>
           <span class="text-[9px] font-bold uppercase tracking-wider">{item.label}</span>
         </a>
       </li>
