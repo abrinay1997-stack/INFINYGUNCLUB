@@ -5,24 +5,40 @@ export interface Props {
   sectionTitle?: string;
 }
 const { items, sectionTitle = 'NUESTROS SERVICIOS' } = Astro.props;
+const b = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
-<section id="servicios" class="py-20 bg-bg">
-  <div class="max-w-7xl mx-auto px-4">
-    <p class="section-tag mb-10">{sectionTitle}</p>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-1">
-      {items.map((item) => (
-        <div class="bg-surface p-8 flex flex-col gap-4 hover:border-l-2 hover:border-primary transition-all group">
-          <span class="text-xs font-bold uppercase tracking-tactical text-primary">{item.tag}</span>
-          <h3 class="font-display text-3xl text-white tracking-wide">{item.title}</h3>
-          <p class="text-muted text-sm flex-1">{item.desc}</p>
-          <a
-            href={item.href}
-            class="text-primary text-xs font-bold uppercase tracking-tactical border-b border-primary pb-1 inline-block w-fit group-hover:pl-2 transition-all"
-          >
+<section id="servicios" class="py-28 bg-black">
+  <div class="max-w-7xl mx-auto px-6">
+
+    <div class="flex items-end justify-between mb-16 border-b border-white/5 pb-8">
+      <div>
+        <p class="text-primary text-[10px] font-black uppercase tracking-[0.35em] mb-4">— {sectionTitle}</p>
+        <h2 class="font-display text-5xl md:text-6xl text-white leading-tight">
+          ELIGE TU<br/>EXPERIENCIA
+        </h2>
+      </div>
+      <span class="hidden md:block font-display text-[80px] text-white/5 leading-none select-none">IGC</span>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/5">
+      {items.map((item, i) => (
+        <a href={b + item.href}
+          class="group flex flex-col gap-6 p-10 hover:bg-zinc-950 transition-colors duration-300 cursor-pointer">
+          <div class="flex items-start justify-between">
+            <span class="text-primary text-[10px] font-black uppercase tracking-[0.3em]">{item.tag}</span>
+            <span class="font-display text-5xl text-white/5 group-hover:text-white/10 transition-colors leading-none">0{i + 1}</span>
+          </div>
+          <div>
+            <h3 class="font-display text-4xl text-white leading-tight mb-3 group-hover:text-primary transition-colors duration-300">
+              {item.title}
+            </h3>
+            <p class="text-zinc-500 text-sm leading-relaxed">{item.desc}</p>
+          </div>
+          <div class="flex items-center gap-3 text-primary text-[10px] font-black uppercase tracking-[0.25em] group-hover:gap-5 transition-all duration-300 mt-auto">
             {item.cta}
-          </a>
-        </div>
+          </div>
+        </a>
       ))}
     </div>
   </div>

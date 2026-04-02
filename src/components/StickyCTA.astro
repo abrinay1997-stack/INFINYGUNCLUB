@@ -1,20 +1,19 @@
 ---
 // src/components/StickyCTA.astro
-// Visible en mobile al hacer scroll — se oculta al llegar al footer
-// Posición: bottom: 56px (encima del tab nav), z-index: 99
 export interface Props {
   lang?: 'es' | 'en';
   href?: string;
 }
 const { lang = 'es', href } = Astro.props;
-const link = href ?? (lang === 'en' ? '/en/booking' : '/reservas');
+const b = import.meta.env.BASE_URL.replace(/\/$/, '');
+const link = href ?? (lang === 'en' ? `${b}/en/booking` : `${b}/reservas`);
 const label = lang === 'en' ? 'BOOK NOW →' : 'RESERVA AHORA →';
 ---
 
 <a
   id="sticky-cta"
   href={link}
-  class="md:hidden fixed left-0 right-0 z-[99] bg-primary text-black font-black text-sm uppercase tracking-tactical py-3 text-center transition-transform translate-y-full"
+  class="md:hidden fixed left-0 right-0 z-[99] bg-primary text-black font-black text-[11px] uppercase tracking-[0.25em] py-3.5 text-center transition-transform translate-y-full"
   style="bottom: 56px"
   aria-label={label}
 >
@@ -27,14 +26,8 @@ const label = lang === 'en' ? 'BOOK NOW →' : 'RESERVA AHORA →';
   if (cta) {
     window.addEventListener('scroll', () => {
       const scrolled = window.scrollY > 300;
-      const nearFooter = footer
-        ? window.scrollY + window.innerHeight >= footer.offsetTop
-        : false;
-      if (scrolled && !nearFooter) {
-        cta.classList.remove('translate-y-full');
-      } else {
-        cta.classList.add('translate-y-full');
-      }
+      const nearFooter = footer ? window.scrollY + window.innerHeight >= footer.offsetTop : false;
+      cta.classList.toggle('translate-y-full', !scrolled || nearFooter);
     }, { passive: true });
   }
 </script>

@@ -8,6 +8,7 @@ export interface Props {
 }
 
 const { lang = 'es' } = Astro.props;
+const b = import.meta.env.BASE_URL.replace(/\/$/, '');
 const currentPath = Astro.url.pathname;
 const links = lang === 'en'
   ? (await import('../data/en/nav.ts')).navLinks
@@ -15,23 +16,23 @@ const links = lang === 'en'
 const mobile = lang === 'en'
   ? (await import('../data/en/nav.ts')).mobileNav
   : mobileNav;
+const homeHref = lang === 'en' ? `${b}/en/` : `${b}/`;
+const bookHref = lang === 'en' ? `${b}/en/booking` : `${b}/reservas`;
 ---
 
-<!-- Desktop/Tablet Nav -->
-<header class="fixed top-0 left-0 right-0 z-50 bg-black border-b border-primary/30">
-  <nav class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-    <!-- Logo -->
-    <a href={lang === 'en' ? '/en/' : '/'} class="flex items-center gap-2">
-      <img src="/Logo/LOGO.PNG" alt="Infinity Gun Club" class="h-10 w-auto" />
+<header class="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-md border-b border-white/5">
+  <nav class="max-w-7xl mx-auto px-6 h-[60px] flex items-center justify-between">
+
+    <a href={homeHref} class="flex items-center shrink-0">
+      <img src={`${b}/Logo/LOGO.PNG`} alt="Infinity Gun Club" class="h-9 w-auto" />
     </a>
 
-    <!-- Links desktop -->
-    <ul class="hidden md:flex items-center gap-6">
+    <ul class="hidden md:flex items-center gap-8">
       {links.map((link) => (
         <li>
           <a
-            href={link.href}
-            class="text-xs font-bold uppercase tracking-tactical text-muted hover:text-primary transition-colors"
+            href={b + link.href}
+            class="text-[11px] font-bold uppercase tracking-[0.18em] text-zinc-500 hover:text-white transition-colors duration-200"
           >
             {link.label}
           </a>
@@ -39,39 +40,35 @@ const mobile = lang === 'en'
       ))}
     </ul>
 
-    <!-- Derecha: toggle idioma + CTA -->
-    <div class="flex items-center gap-3">
+    <div class="flex items-center gap-5">
       <LanguageToggle currentPath={currentPath} client:load />
       <a
-        href={lang === 'en' ? '/en/booking' : '/reservas'}
-        class="hidden md:inline-block btn-primary text-xs"
+        href={bookHref}
+        class="hidden md:inline-block text-[11px] font-black uppercase tracking-[0.18em] bg-primary text-black px-5 py-2.5 hover:bg-primary-dark transition-colors duration-200"
       >
-        {lang === 'en' ? 'BOOK NOW' : 'RESERVA AHORA'}
+        {lang === 'en' ? 'BOOK NOW' : 'RESERVAR'}
       </a>
     </div>
   </nav>
 </header>
 
-<!-- Spacer para compensar el nav fijo -->
-<div class="h-16"></div>
+<div class="h-[60px]"></div>
 
-<!-- Mobile Bottom Tab Navigation -->
-<nav class="md:hidden fixed bottom-0 left-0 right-0 z-[100] bg-black border-t border-primary/30"
+<nav class="md:hidden fixed bottom-0 left-0 right-0 z-[100] bg-black/95 backdrop-blur-md border-t border-white/5"
      style="padding-bottom: env(safe-area-inset-bottom)">
   <ul class="flex justify-around items-center h-14">
     {mobile.map((item) => (
       <li>
         <a
-          href={item.href}
-          class="flex flex-col items-center gap-0.5 text-muted hover:text-primary transition-colors px-3 py-1"
+          href={b + item.href}
+          class="flex flex-col items-center gap-0.5 text-zinc-600 hover:text-primary transition-colors px-3 py-1"
         >
-          <span class="text-lg leading-none">{item.icon}</span>
-          <span class="text-[10px] font-bold uppercase tracking-wide">{item.label}</span>
+          <span class="text-base leading-none">{item.icon}</span>
+          <span class="text-[9px] font-bold uppercase tracking-wider">{item.label}</span>
         </a>
       </li>
     ))}
   </ul>
 </nav>
 
-<!-- Spacer mobile para el bottom nav -->
 <div class="md:hidden h-14"></div>

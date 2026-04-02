@@ -7,6 +7,8 @@ import BookingForm from '../components/BookingForm.jsx';
 import TrustSignals from '../components/TrustSignals.astro';
 import FAQ from '../components/FAQ.astro';
 
+const b = import.meta.env.BASE_URL.replace(/\/$/, '');
+
 const faqCorp = [
   { q: '¿Cuál es el mínimo de personas para un evento corporativo?', a: 'Atendemos grupos desde 5 personas. Para grupos grandes de 50+ personas, contáctanos para una propuesta personalizada.' },
   { q: '¿Se puede incluir catering?', a: 'Sí. Trabajamos con proveedores de catering para eventos de medio día o día completo. Consúltanos al reservar.' },
@@ -23,45 +25,61 @@ const faqCorp = [
   hreflangEn="https://infinitygunclub.netlify.app/en/corporate"
 >
   <NavBar lang="es" />
-  <StickyCTA lang="es" href="/reservas?tipo=corporativo" />
+  <StickyCTA lang="es" href={`${b}/reservas?tipo=corporativo`} />
 
-  <section class="min-h-[60vh] flex items-end bg-black relative overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent z-10"></div>
-    <div class="absolute inset-0 bg-cover bg-center opacity-40" style="background-image: url('/images/corporativo-bg.jpg')"></div>
-    <div class="relative z-20 max-w-7xl mx-auto px-4 pb-16">
-      <p class="section-tag mb-4">🏢 CORPORATIVO</p>
-      <h1 class="font-display text-5xl md:text-7xl text-primary mb-4">TEAM BUILDING<br>QUE CONECTA</h1>
-      <p class="text-muted text-lg mb-8 max-w-xl">Eventos grupales desde 5 personas. Experiencia única que une equipos.</p>
-      <a href="/reservas?tipo=corporativo" class="btn-primary">COTIZA TU EVENTO</a>
+  <section class="min-h-[70vh] flex items-end bg-black relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-r from-black via-black/70 to-black/20 z-10"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10"></div>
+    <div class="absolute inset-0 bg-cover bg-center opacity-50" style={`background-image: url('${b}/images/corporativo-bg.jpg')`}></div>
+    <div class="relative z-20 max-w-7xl mx-auto px-6 pb-20">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-6 h-px bg-primary"></div>
+        <p class="text-primary text-[10px] font-black uppercase tracking-[0.35em]">🏢 CORPORATIVO</p>
+      </div>
+      <h1 class="font-display text-[70px] md:text-[100px] text-white leading-[0.9] mb-6">TEAM BUILDING<br>QUE CONECTA</h1>
+      <p class="text-zinc-400 text-base mb-10 max-w-sm">Eventos grupales desde 5 personas. Experiencia única que une equipos.</p>
+      <a href={`${b}/reservas?tipo=corporativo`} class="inline-block bg-primary text-black font-black text-[11px] uppercase tracking-[0.25em] px-8 py-4 hover:bg-primary-dark transition-colors">COTIZA TU EVENTO</a>
     </div>
   </section>
 
-  <section class="py-20 bg-bg">
-    <div class="max-w-7xl mx-auto px-4">
-      <p class="section-tag mb-10">PAQUETES CORPORATIVOS</p>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-1">
+  <section class="py-24 bg-zinc-950">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex items-center gap-3 mb-14">
+        <div class="w-6 h-px bg-primary"></div>
+        <p class="text-primary text-[10px] font-black uppercase tracking-[0.35em]">PAQUETES CORPORATIVOS</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/5">
         {[
           { name: 'BÁSICO', price: '$350', sub: 'Hasta 10 personas', bullets: ['100 disparos por grupo', '2 armas disponibles', 'Instructor grupal', 'Equipo de seguridad'] },
           { name: 'PREMIUM', price: '$750', sub: 'Hasta 25 personas', bullets: ['Tiro ilimitado 2h', '5 modelos de armas', 'Instructor por equipo', 'Fotos del evento'] },
           { name: 'ENTERPRISE', price: 'Cotizar', sub: '50+ personas', bullets: ['Día completo exclusivo', 'Armas sin límite', 'Catering opcional', 'Video + certificados'] },
         ].map((pkg) => (
-          <div class="bg-surface p-8 flex flex-col">
-            <h3 class="font-display text-3xl text-primary mb-1">{pkg.name}</h3>
-            <p class="text-muted text-xs mb-4">{pkg.sub}</p>
-            <div class="text-4xl font-black text-white mb-6">{pkg.price}</div>
-            <ul class="space-y-2 flex-1 mb-8">
-              {pkg.bullets.map(b => <li class="text-muted text-sm flex gap-2"><span class="text-primary">✓</span>{b}</li>)}
+          <div class="p-10 flex flex-col gap-6">
+            <div>
+              <h3 class="font-display text-4xl text-primary mb-1">{pkg.name}</h3>
+              <p class="text-zinc-600 text-xs uppercase tracking-widest mb-3">{pkg.sub}</p>
+              <div class="font-display text-5xl text-white">{pkg.price}</div>
+            </div>
+            <ul class="space-y-3 flex-1">
+              {pkg.bullets.map(bullet => (
+                <li class="text-zinc-500 text-sm flex gap-3">
+                  <span class="text-primary text-xs mt-0.5">✓</span>{bullet}
+                </li>
+              ))}
             </ul>
-            <a href="/reservas?tipo=corporativo" class="btn-primary text-center text-sm">RESERVAR</a>
+            <a href={`${b}/reservas?tipo=corporativo`} class="inline-block bg-primary text-black font-black text-[11px] uppercase tracking-[0.2em] px-6 py-3 text-center hover:bg-primary-dark transition-colors">RESERVAR</a>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <section class="py-20 bg-surface">
-    <div class="max-w-7xl mx-auto px-4">
-      <p class="section-tag mb-10">COTIZA TU EVENTO</p>
+  <section class="py-24 bg-black">
+    <div class="max-w-2xl mx-auto px-6">
+      <div class="flex items-center gap-3 mb-12">
+        <div class="w-6 h-px bg-primary"></div>
+        <p class="text-primary text-[10px] font-black uppercase tracking-[0.35em]">COTIZA TU EVENTO</p>
+      </div>
       <BookingForm lang="es" client:visible />
     </div>
   </section>

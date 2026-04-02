@@ -5,43 +5,52 @@ export interface Props {
   data: typeof HeroType;
 }
 const { data } = Astro.props;
+const b = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
-<section class="relative min-h-[85vh] flex items-end bg-black overflow-hidden">
-  <!-- Video de fondo (desktop) — fallback imagen en mobile/tablet -->
+<section class="relative h-screen min-h-[600px] flex items-center bg-black overflow-hidden">
   <div class="absolute inset-0">
-    <!-- Imagen de fondo (siempre) -->
     <div
       class="absolute inset-0 bg-cover bg-center bg-no-repeat"
-      style="background-image: url('/images/hero-bg.jpg')"
+      style={`background-image: url('${b}/images/hero-bg.jpg')`}
       role="img"
-      aria-label="Infinity Gun Club - Polígono de tiro profesional"
+      aria-label="Infinity Gun Club"
     ></div>
-    <!-- Video overlay (solo desktop) -->
     <video
       class="hidden lg:block absolute inset-0 w-full h-full object-cover"
-      autoplay
-      muted
-      loop
-      playsinline
-      preload="none"
+      autoplay muted loop playsinline preload="none"
     >
-      <source src="/videos/hero.mp4" type="video/mp4" />
+      <source src={`${b}/videos/hero.mp4`} type="video/mp4" />
     </video>
-    <!-- Gradiente oscuro -->
-    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-black via-black/75 to-black/20"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/10"></div>
   </div>
 
-  <!-- Contenido -->
-  <div class="relative z-10 max-w-7xl mx-auto px-4 pb-16 lg:pb-24">
-    <p class="section-tag mb-4">{data.tag}</p>
-    <h1 class="font-display text-5xl md:text-7xl lg:text-8xl text-primary leading-none mb-4 whitespace-pre-line">
-      {data.headline}
-    </h1>
-    <p class="text-muted text-lg mb-8 max-w-xl">{data.subheadline}</p>
-    <div class="flex flex-wrap gap-4">
-      <a href={data.ctaPrimary.href} class="btn-primary">{data.ctaPrimary.label}</a>
-      <a href={data.ctaSecondary.href} class="btn-outline">{data.ctaSecondary.label}</a>
+  <div class="relative z-10 max-w-7xl mx-auto px-6 w-full">
+    <div class="max-w-2xl">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-6 h-px bg-primary"></div>
+        <p class="text-primary text-[10px] font-black uppercase tracking-[0.35em]">{data.tag}</p>
+      </div>
+      <h1 class="font-display text-[72px] sm:text-[90px] md:text-[110px] lg:text-[130px] text-white leading-[0.88] mb-8 whitespace-pre-line">
+        {data.headline}
+      </h1>
+      <p class="text-zinc-400 text-base mb-10 max-w-sm font-light tracking-wide">{data.subheadline}</p>
+      <div class="flex flex-wrap gap-3">
+        <a href={b + data.ctaPrimary.href}
+          class="bg-primary text-black font-black text-[11px] uppercase tracking-[0.25em] px-8 py-4 hover:bg-primary-dark transition-colors duration-200">
+          {data.ctaPrimary.label}
+        </a>
+        <a href={b + data.ctaSecondary.href}
+          class="border border-white/20 text-white text-[11px] font-bold uppercase tracking-[0.25em] px-8 py-4 hover:border-primary hover:text-primary transition-colors duration-200">
+          {data.ctaSecondary.label}
+        </a>
+      </div>
     </div>
+  </div>
+
+  <div class="absolute bottom-10 right-8 hidden lg:flex flex-col items-center gap-2 opacity-30">
+    <span class="text-[9px] uppercase tracking-[0.3em] text-white rotate-90 mb-4">Scroll</span>
+    <div class="w-px h-16 bg-white"></div>
   </div>
 </section>
