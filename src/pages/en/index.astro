@@ -7,7 +7,6 @@ import StickyCTA from '../../components/StickyCTA.astro';
 import Hero from '../../components/Hero.astro';
 import ValueProps from '../../components/ValueProps.astro';
 import HowItWorks from '../../components/HowItWorks.astro';
-import SocialProof from '../../components/SocialProof.astro';
 import Segments from '../../components/Segments.astro';
 import Gallery from '../../components/Gallery.astro';
 import BookingForm from '../../components/BookingForm.jsx';
@@ -15,7 +14,7 @@ import FAQ from '../../components/FAQ.astro';
 import TrustSignals from '../../components/TrustSignals.astro';
 import ContactMap from '../../components/ContactMap.astro';
 
-import { hero, valueProps, howItWorks, socialProof, faq } from '../../data/en/home.ts';
+import { hero, valueProps, howItWorks, faq } from '../../data/en/home.ts';
 import { segments } from '../../data/en/segments.ts';
 ---
 
@@ -30,7 +29,6 @@ import { segments } from '../../data/en/segments.ts';
   <Hero data={hero} />
   <ValueProps items={valueProps} />
   <HowItWorks data={howItWorks} />
-  <SocialProof data={socialProof} />
   <Segments items={segments} sectionTitle="OUR SERVICES" />
 
   <!-- MEMBERSHIP TEASER -->
