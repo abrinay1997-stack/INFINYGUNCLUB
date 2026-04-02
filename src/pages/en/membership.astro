@@ -1,0 +1,170 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import NavBar from '../../components/NavBar.astro';
+import Footer from '../../components/Footer.astro';
+import StickyCTA from '../../components/StickyCTA.astro';
+import TrustSignals from '../../components/TrustSignals.astro';
+import FAQ from '../../components/FAQ.astro';
+
+const b = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const tiers = [
+  {
+    name: 'SILVER',
+    price: '$49',
+    period: '/mo',
+    sub: 'Monthly access',
+    highlight: false,
+    bullets: [
+      '4 shooting sessions/month',
+      '9mm pistol included',
+      'Priority online booking',
+      '10% discount in store',
+      'Dry-fire range access',
+    ],
+  },
+  {
+    name: 'GOLD',
+    price: '$89',
+    period: '/mo',
+    sub: 'Most popular',
+    highlight: true,
+    bullets: [
+      '8 shooting sessions/month',
+      'Full armory access',
+      '1 personal instructor/month',
+      '20% discount in store',
+      '1 free guest/month',
+      'Access to exclusive events',
+    ],
+  },
+  {
+    name: 'ELITE',
+    price: '$149',
+    period: '/mo',
+    sub: 'Unlimited access',
+    highlight: false,
+    bullets: [
+      'Unlimited sessions',
+      'Full armory, no limits',
+      '2 personal instructors/month',
+      'Private locker assigned',
+      '30% discount in store',
+      '2 free guests/month',
+      'VIP access to all events',
+    ],
+  },
+];
+
+const faqMem = [
+  { q: 'Can I cancel my membership anytime?', a: 'Yes. Memberships can be cancelled with 30 days notice and no penalty.' },
+  { q: 'Do unused sessions roll over?', a: 'No. Unused sessions do not carry over to the next month. We recommend planning your visits.' },
+  { q: 'Can I switch plans?', a: 'Yes. You can upgrade or downgrade your membership once per month.' },
+  { q: 'Do guests pay anything?', a: 'Guests under a membership only cover extra ammo if they exceed the included allowance.' },
+];
+---
+
+<Layout
+  title="Exclusive Membership — Infinity Gun Club Panama"
+  description="Become an exclusive member of Panama's largest shooting range. Silver, Gold and Elite plans with unlimited access."
+  lang="en"
+  hreflangEs="https://infinitygunclub.netlify.app/membresia"
+  hreflangEn="https://infinitygunclub.netlify.app/en/membership"
+>
+  <NavBar lang="en" />
+  <StickyCTA lang="en" href={`${b}/en/contact?tipo=membership`} />
+
+  <!-- HERO -->
+  <section class="min-h-[60vh] flex items-end bg-black relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-black/30 z-10"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10"></div>
+    <div class="absolute inset-0 bg-cover bg-center opacity-40" style={`background-image: url('${b}/images/membresia-bg.jpg')`}></div>
+    <div class="absolute right-0 top-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-primary/10 rounded-full z-10 hidden md:block"></div>
+    <div class="absolute right-20 top-1/2 -translate-y-1/2 w-[400px] h-[400px] border border-primary/20 rounded-full z-10 hidden md:block"></div>
+    <div class="relative z-20 max-w-7xl mx-auto px-6 pb-20 w-full">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-6 h-px bg-primary"></div>
+        <p class="text-primary text-[10px] font-black uppercase tracking-[0.35em]">EXCLUSIVE MEMBERSHIP</p>
+      </div>
+      <h1 class="font-display text-[70px] md:text-[100px] text-white leading-[0.9] mb-6">
+        VIP<br><span class="text-primary">ACCESS</span>
+      </h1>
+      <p class="text-zinc-400 text-base mb-10 max-w-md">
+        Join the elite club. Unlimited access to Panama's best shooting range, personal instructors, and exclusive member benefits.
+      </p>
+      <a href="#plans" class="inline-block bg-primary text-black font-black text-[11px] uppercase tracking-[0.25em] px-8 py-4 hover:bg-primary-dark transition-colors">
+        VIEW PLANS
+      </a>
+    </div>
+  </section>
+
+  <!-- BENEFITS OVERVIEW -->
+  <section class="py-16 bg-zinc-950 border-y border-white/5">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-2 md:grid-cols-4 divide-x divide-white/5">
+        {[
+          { num: 'No queues', label: 'Priority booking' },
+          { num: 'Armory', label: 'Full access' },
+          { num: 'Discounts', label: 'Store & events' },
+          { num: 'Community', label: 'IGC member network' },
+        ].map(item => (
+          <div class="px-6 py-8 text-center">
+            <p class="font-display text-xl text-primary mb-1">{item.num}</p>
+            <p class="text-zinc-500 text-xs uppercase tracking-widest">{item.label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- PLANS -->
+  <section id="plans" class="py-28 bg-black">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex items-center gap-3 mb-16">
+        <div class="w-6 h-px bg-primary"></div>
+        <p class="text-primary text-[10px] font-black uppercase tracking-[0.35em]">CHOOSE YOUR PLAN</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-white/5">
+        {tiers.map((tier) => (
+          <div class={`flex flex-col gap-6 p-10 relative ${tier.highlight ? 'bg-zinc-900' : 'bg-black'}`}>
+            {tier.highlight && (
+              <div class="absolute top-0 left-0 right-0 h-0.5 bg-primary"></div>
+            )}
+            <div>
+              {tier.highlight && (
+                <span class="text-[9px] font-black uppercase tracking-[0.3em] text-black bg-primary px-2 py-0.5 mb-3 inline-block">
+                  {tier.sub}
+                </span>
+              )}
+              {!tier.highlight && (
+                <p class="text-zinc-600 text-xs uppercase tracking-widest mb-3">{tier.sub}</p>
+              )}
+              <h3 class="font-display text-4xl text-primary mb-2">{tier.name}</h3>
+              <div class="flex items-end gap-1">
+                <span class="font-display text-5xl text-white">{tier.price}</span>
+                <span class="text-zinc-600 text-sm mb-1.5">{tier.period}</span>
+              </div>
+            </div>
+            <ul class="space-y-3 flex-1">
+              {tier.bullets.map(b => (
+                <li class="text-zinc-400 text-sm flex gap-3">
+                  <span class="text-primary text-xs mt-0.5 shrink-0">✓</span>{b}
+                </li>
+              ))}
+            </ul>
+            <a
+              href={`${b}/en/contact?tipo=membership&plan=${tier.name.toLowerCase()}`}
+              class={`inline-block font-black text-[11px] uppercase tracking-[0.2em] px-6 py-3.5 text-center transition-colors ${tier.highlight ? 'bg-primary text-black hover:bg-primary-dark' : 'border border-primary text-primary hover:bg-primary hover:text-black'}`}
+            >
+              JOIN — {tier.name}
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FAQ items={faqMem} title="MEMBERSHIP FAQ" />
+  <TrustSignals lang="en" />
+  <Footer lang="en" />
+</Layout>

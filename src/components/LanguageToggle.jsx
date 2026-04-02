@@ -13,6 +13,8 @@ const ROUTE_MAP = {
   [`${BASE}/gobierno/`]: `${BASE}/en/government/`,
   [`${BASE}/instalaciones`]: `${BASE}/en/facilities`,
   [`${BASE}/instalaciones/`]: `${BASE}/en/facilities/`,
+  [`${BASE}/membresia`]: `${BASE}/en/membership`,
+  [`${BASE}/membresia/`]: `${BASE}/en/membership/`,
   [`${BASE}/reservas`]: `${BASE}/en/booking`,
   [`${BASE}/reservas/`]: `${BASE}/en/booking/`,
   [`${BASE}/contacto`]: `${BASE}/en/contact`,
@@ -41,12 +43,12 @@ export default function LanguageToggle({ currentPath }) {
   return (
     <button
       onClick={toggleLang}
-      className="flex items-center gap-1 text-[10px] font-black uppercase tracking-[0.15em] cursor-pointer"
+      className="flex items-center gap-0.5 text-[10px] font-black uppercase tracking-[0.15em] cursor-pointer"
       aria-label="Toggle language"
     >
-      <span className={`px-2 py-1 transition-colors ${!isEnglish ? 'text-primary' : 'text-zinc-600 hover:text-zinc-400'}`}>ES</span>
-      <span className="text-zinc-700">|</span>
-      <span className={`px-2 py-1 transition-colors ${isEnglish ? 'text-primary' : 'text-zinc-600 hover:text-zinc-400'}`}>EN</span>
+      <span className={`px-2 py-1 rounded transition-colors ${!isEnglish ? 'bg-primary text-black' : 'text-zinc-500 hover:text-black'}`}>ES</span>
+      <span className="text-zinc-300">|</span>
+      <span className={`px-2 py-1 rounded transition-colors ${isEnglish ? 'bg-primary text-black' : 'text-zinc-500 hover:text-black'}`}>EN</span>
     </button>
   );
 }

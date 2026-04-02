@@ -1,0 +1,207 @@
+---
+import Layout from '../layouts/Layout.astro';
+import NavBar from '../components/NavBar.astro';
+import Footer from '../components/Footer.astro';
+import StickyCTA from '../components/StickyCTA.astro';
+import TrustSignals from '../components/TrustSignals.astro';
+import FAQ from '../components/FAQ.astro';
+
+const b = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const tiers = [
+  {
+    name: 'PLATA',
+    price: '$49',
+    period: '/mes',
+    sub: 'Acceso mensual',
+    highlight: false,
+    bullets: [
+      '4 sesiones de tiro al mes',
+      'Pistola 9mm incluida',
+      'Reserva online prioritaria',
+      '10% descuento en tienda',
+      'Acceso a área de práctica seca',
+    ],
+  },
+  {
+    name: 'ORO',
+    price: '$89',
+    period: '/mes',
+    sub: 'Más popular',
+    highlight: true,
+    bullets: [
+      '8 sesiones de tiro al mes',
+      'Acceso a toda la armería',
+      'Instructor personal 1x/mes',
+      '20% descuento en tienda',
+      'Invitado gratis 1x/mes',
+      'Acceso a eventos exclusivos',
+    ],
+  },
+  {
+    name: 'ÉLITE',
+    price: '$149',
+    period: '/mes',
+    sub: 'Acceso ilimitado',
+    highlight: false,
+    bullets: [
+      'Sesiones ilimitadas',
+      'Armería completa sin límite',
+      'Instructor personal 2x/mes',
+      'Locker privado asignado',
+      '30% descuento en tienda',
+      'Invitados gratis 2x/mes',
+      'Acceso VIP a todos los eventos',
+    ],
+  },
+];
+
+const faqMem = [
+  { q: '¿Puedo cancelar mi membresía en cualquier momento?', a: 'Sí. Las membresías se pueden cancelar con 30 días de anticipación sin penalidad.' },
+  { q: '¿Las sesiones no utilizadas se acumulan?', a: 'No. Las sesiones no utilizadas no se acumulan al mes siguiente. Te recomendamos planificar tus visitas.' },
+  { q: '¿Puedo cambiar de plan?', a: 'Sí. Puedes hacer upgrade o downgrade de tu membresía una vez al mes.' },
+  { q: '¿Los invitados pagan algo?', a: 'Los invitados bajo membresía solo cubren su munición adicional si exceden el cupo incluido.' },
+];
+---
+
+<Layout
+  title="Membresía Exclusiva — Infinity Gun Club Panamá"
+  description="Conviértete en miembro exclusivo del polígono más grande de Panamá. Planes Plata, Oro y Élite con acceso ilimitado."
+  lang="es"
+  hreflangEs="https://infinitygunclub.netlify.app/membresia"
+  hreflangEn="https://infinitygunclub.netlify.app/en/membership"
+>
+  <NavBar lang="es" />
+  <StickyCTA lang="es" href={`${b}/contacto?tipo=membresia`} />
+
+  <!-- HERO -->
+  <section class="min-h-[60vh] flex items-end bg-black relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-black/30 z-10"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10"></div>
+    <div class="absolute inset-0 bg-cover bg-center opacity-40" style={`background-image: url('${b}/images/membresia-bg.jpg')`}></div>
+    <!-- Decorative gold ring -->
+    <div class="absolute right-0 top-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-primary/10 rounded-full z-10 hidden md:block"></div>
+    <div class="absolute right-20 top-1/2 -translate-y-1/2 w-[400px] h-[400px] border border-primary/20 rounded-full z-10 hidden md:block"></div>
+    <div class="relative z-20 max-w-7xl mx-auto px-6 pb-20 w-full">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-6 h-px bg-primary"></div>
+        <p class="text-primary text-[10px] font-black uppercase tracking-[0.35em]">MEMBRESÍA EXCLUSIVA</p>
+      </div>
+      <h1 class="font-display text-[70px] md:text-[100px] text-white leading-[0.9] mb-6">
+        ACCESO<br><span class="text-primary">VIP</span>
+      </h1>
+      <p class="text-zinc-400 text-base mb-10 max-w-md">
+        Sé parte del club de élite. Acceso ilimitado al mejor polígono de Panamá, instructores personales y beneficios exclusivos.
+      </p>
+      <a href="#planes" class="inline-block bg-primary text-black font-black text-[11px] uppercase tracking-[0.25em] px-8 py-4 hover:bg-primary-dark transition-colors">
+        VER PLANES
+      </a>
+    </div>
+  </section>
+
+  <!-- BENEFICIOS GENERALES -->
+  <section class="py-16 bg-zinc-950 border-y border-white/5">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-2 md:grid-cols-4 divide-x divide-white/5">
+        {[
+          { num: 'Sin colas', label: 'Reserva prioritaria' },
+          { num: 'Armería', label: 'Acceso completo' },
+          { num: 'Descuentos', label: 'En tienda y eventos' },
+          { num: 'Comunidad', label: 'Red de miembros IGC' },
+        ].map(item => (
+          <div class="px-6 py-8 text-center">
+            <p class="font-display text-xl text-primary mb-1">{item.num}</p>
+            <p class="text-zinc-500 text-xs uppercase tracking-widest">{item.label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- PLANES -->
+  <section id="planes" class="py-28 bg-black">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex items-center gap-3 mb-16">
+        <div class="w-6 h-px bg-primary"></div>
+        <p class="text-primary text-[10px] font-black uppercase tracking-[0.35em]">ELIGE TU PLAN</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-white/5">
+        {tiers.map((tier) => (
+          <div class={`flex flex-col gap-6 p-10 relative ${tier.highlight ? 'bg-zinc-900' : 'bg-black'}`}>
+            {tier.highlight && (
+              <div class="absolute top-0 left-0 right-0 h-0.5 bg-primary"></div>
+            )}
+            <div>
+              {tier.highlight && (
+                <span class="text-[9px] font-black uppercase tracking-[0.3em] text-black bg-primary px-2 py-0.5 mb-3 inline-block">
+                  {tier.sub}
+                </span>
+              )}
+              {!tier.highlight && (
+                <p class="text-zinc-600 text-xs uppercase tracking-widest mb-3">{tier.sub}</p>
+              )}
+              <h3 class="font-display text-4xl text-primary mb-2">{tier.name}</h3>
+              <div class="flex items-end gap-1">
+                <span class="font-display text-5xl text-white">{tier.price}</span>
+                <span class="text-zinc-600 text-sm mb-1.5">{tier.period}</span>
+              </div>
+            </div>
+            <ul class="space-y-3 flex-1">
+              {tier.bullets.map(b => (
+                <li class="text-zinc-400 text-sm flex gap-3">
+                  <span class="text-primary text-xs mt-0.5 shrink-0">✓</span>{b}
+                </li>
+              ))}
+            </ul>
+            <a
+              href={`${b}/contacto?tipo=membresia&plan=${tier.name.toLowerCase()}`}
+              class={`inline-block font-black text-[11px] uppercase tracking-[0.2em] px-6 py-3.5 text-center transition-colors ${tier.highlight ? 'bg-primary text-black hover:bg-primary-dark' : 'border border-primary text-primary hover:bg-primary hover:text-black'}`}
+            >
+              UNIRSE — {tier.name}
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- EXCLUSIVIDAD -->
+  <section class="py-24 bg-zinc-950">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-2 gap-16 items-center">
+        <div>
+          <div class="flex items-center gap-3 mb-8">
+            <div class="w-6 h-px bg-primary"></div>
+            <p class="text-primary text-[10px] font-black uppercase tracking-[0.35em]">POR QUÉ SER MIEMBRO</p>
+          </div>
+          <h2 class="font-display text-5xl md:text-6xl text-white leading-tight mb-8">
+            MÁS QUE UN<br>POLÍGONO
+          </h2>
+          <p class="text-zinc-500 text-base leading-relaxed mb-6">
+            La membresía IGC te da acceso a una comunidad de entusiastas del tiro, eventos exclusivos, competencias internas y entrenamientos con instructores de nivel internacional.
+          </p>
+          <p class="text-zinc-500 text-base leading-relaxed">
+            Desde el día 1 eres parte del club más exclusivo de Panamá.
+          </p>
+        </div>
+        <div class="grid grid-cols-2 gap-px bg-white/5">
+          {[
+            { icon: '→', title: 'Eventos privados', desc: 'Acceso a competencias y noches de tiro exclusivas para miembros' },
+            { icon: '→', title: 'Comunidad', desc: 'Red de miembros, foros internos y acceso prioritario a instructores' },
+            { icon: '→', title: 'Equipo premium', desc: 'Prueba nuevas armas antes de que estén disponibles al público' },
+            { icon: '→', title: 'Progreso real', desc: 'Seguimiento personalizado de tu evolución como tirador' },
+          ].map(item => (
+            <div class="bg-black p-8">
+              <p class="text-primary font-black text-sm mb-3">{item.icon} {item.title}</p>
+              <p class="text-zinc-600 text-xs leading-relaxed">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <FAQ items={faqMem} title="PREGUNTAS — MEMBRESÍA" />
+  <TrustSignals lang="es" />
+  <Footer lang="es" />
+</Layout>

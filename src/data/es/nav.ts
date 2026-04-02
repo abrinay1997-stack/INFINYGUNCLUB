@@ -2,6 +2,7 @@
 export const navLinks = [
   { label: 'Servicios', href: '/#servicios' },
   { label: 'Instalaciones', href: '/instalaciones' },
+  { label: 'Membresía', href: '/membresia' },
   { label: 'Reservas', href: '/reservas' },
   { label: 'Contacto', href: '/contacto' },
 ];

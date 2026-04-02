@@ -20,11 +20,11 @@ const homeHref = lang === 'en' ? `${b}/en/` : `${b}/`;
 const bookHref = lang === 'en' ? `${b}/en/booking` : `${b}/reservas`;
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50 bg-black/60 backdrop-blur-xl border-b border-white/8" style="backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/85 backdrop-blur-xl border-b border-black/8" style="backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);">
   <nav class="max-w-7xl mx-auto px-6 h-[60px] flex items-center justify-between">
 
     <a href={homeHref} class="flex items-center shrink-0">
-      <img src={`${b}/Logo/LOGO.PNG`} alt="Infinity Gun Club" class="h-9 w-auto" style="filter: brightness(0) invert(1);" />
+      <img src={`${b}/Logo/LOGO.svg`} alt="Infinity Gun Club" class="h-9 w-auto" />
     </a>
 
     <ul class="hidden md:flex items-center gap-8">
@@ -32,7 +32,7 @@ const bookHref = lang === 'en' ? `${b}/en/booking` : `${b}/reservas`;
         <li>
           <a
             href={b + link.href}
-            class="text-[11px] font-bold uppercase tracking-[0.18em] text-zinc-500 hover:text-white transition-colors duration-200"
+            class="text-[11px] font-bold uppercase tracking-[0.18em] text-zinc-600 hover:text-black transition-colors duration-200"
           >
             {link.label}
           </a>
